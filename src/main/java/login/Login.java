@@ -21,7 +21,7 @@ public class Login {
 			Scanner scanner = new Scanner(System.in);
 			
 			ClearScreen.clearScreen();
-			System.out.print("LOGIN PAGE\n\nEnter your first name: ");
+			System.out.print("LOGIN PAGE\n\nEnter your Username: ");
 			String userName = scanner.nextLine();
 			
 			System.out.print("Enter your password: ");
@@ -36,8 +36,10 @@ public class Login {
 				String tag = userName;
 				Menu.menu_page(tag);
             }
-			else
-				System.out.println("Username already exists, please try again");
+			else {
+				System.out.println("Incorrect username and password combination, please try again");
+				login();
+			}
 		    scanner.close();
 		} catch (SQLException e) {
             e.printStackTrace();
