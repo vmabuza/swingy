@@ -2,12 +2,13 @@ package swingy;
 
 import java.util.Scanner;
 
+import dbConnection.CreateVillain;
 import registration.SignUp;
 import login.Login;
 
 public class Main {
 	public static void main(String[] args) {
-		
+		CreateVillain.createVillain();
 		String welcome_msg = "Welcome to Swingy\n\nPlease sign up or login bellow.\n1. Login\n2. Sign up\n\n";;
 		
 		//Read input

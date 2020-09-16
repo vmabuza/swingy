@@ -8,15 +8,16 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import dbConnection.ConnString;
+import swingy.Start;
 
 public class ChooseHero {
 	public static void chooseHero(String tag) {
 		String query = "SELECT heroName FROM swingy.dbo.heroes WHERE  owner LIKE ?";
 		String query2 = "SELECT * FROM swingy.dbo.heroes WHERE  owner LIKE ? AND heroName LIKE ?";
 		int i = 1;
+		Scanner scanner = new Scanner(System.in);
 		
 		try (Connection con = DriverManager.getConnection(ConnString.conn());) {
-			Scanner scanner = new Scanner(System.in);
 			
 			PreparedStatement SQL = con.prepareStatement(query);
 			SQL.setString(1, "%" + tag + "%");
@@ -45,12 +46,24 @@ public class ChooseHero {
             	System.out.println("Level: " + rs2.getString("heroLevel"));
             	System.out.println("Hitpoints: " + rs2.getString("hitPoints"));
             	System.out.println("Experience: " + rs2.getString("experience"));
-//            	System.out.println();
+            	
+            	String selectedHero = rs2.getString("heroName");
+            	System.out.println("\n\n1. Start game\n2. Choose a different hero");
+            	String input2 = scanner.nextLine();
+            	int convert = Integer.parseInt(input2.trim());
+            	
+            	if (convert == 1)
+            		Start.startGame(tag, selectedHero);
+            	else
+            		chooseHero(tag);
             	}
-            else
+            else {
             	System.out.println("You have chosen a non existing hero " + input + "Please try again");
+            	chooseHero(tag);
+            }
             } catch (SQLException e) {
                 e.printStackTrace();
                 }
 		} 
 	}
+	

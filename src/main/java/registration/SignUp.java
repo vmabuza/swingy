@@ -49,23 +49,3 @@ public class SignUp {
             }
     }
 }
-    
-    
-//    public static void select() {
-//
-//        try (Connection con = DriverManager.getConnection(JDBC_URL); Statement stmt = con.createStatement();) {
-//            String SQL = "SELECT TOP 10 * FROM swingy.dbo.employees";
-//            ResultSet rs = stmt.executeQuery(SQL);
-//
-//            // Iterate through the data in the result set and display it.
-//            while (rs.next()) {
-//                System.out.println(rs.getString("first_name") + " " + rs.getString("last_name"));
-//                System.out.println("Hello bitches");
-//            }
-//        }
-//        // Handle any errors that may have occurred.
-//        catch (SQLException e) {
-//            e.printStackTrace();
-//            }
-//    }
-//}
