@@ -3,12 +3,19 @@ package swingy;
 import java.util.Scanner;
 
 import dbConnection.CreateVillain;
+import dbConnection.GameState;
 import registration.SignUp;
 import login.Login;
 
 public class Main {
 	public static void main(String[] args) {
+		invoke();
+	}
+	
+	public static void invoke() {
 		CreateVillain.createVillain();
+		GameState.createGameState();
+		ClearScreen.clearScreen();
 		String welcome_msg = "Welcome to Swingy\n\nPlease sign up or login bellow.\n1. Login\n2. Sign up\n\n";;
 		
 		//Read input
@@ -33,5 +40,5 @@ public class Main {
 			} catch (NumberFormatException nfe) {
 					System.out.println("InvalidNumberFormatException: " + nfe.getMessage());
 					} finally {reader.close(); }
-		} 
+	}
 	}

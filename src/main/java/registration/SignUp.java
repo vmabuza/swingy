@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import dbConnection.ConnString;
 import swingy.ClearScreen;
+import swingy.Main;
 
 public class SignUp {
     
@@ -21,11 +22,8 @@ public class SignUp {
 			Scanner scanner = new Scanner(System.in);
 			
 			ClearScreen.clearScreen();
-			System.out.print("REGISTRATION PAGE\n\nEnter your first name: ");
+			System.out.print("REGISTRATION PAGE\n\nEnter a unique username: ");
 			String userName = scanner.nextLine();
-			
-			System.out.print("Enter your password: ");
-			String passWord = scanner.nextLine();
 						
 			PreparedStatement SQL = con.prepareStatement(query);
 			SQL.setString(1, "%" + userName + "%");
@@ -33,16 +31,19 @@ public class SignUp {
 			
 			//If user doesn't exist save them
 			if (!rs.next()) {
-				String insert = "INSERT INTO swingy.dbo.users (username, password) VALUES (?, ?)";
+				String insert = "INSERT INTO swingy.dbo.users (username) VALUES (?)";
 				PreparedStatement SQLsave = con.prepareStatement(insert);
 		
 				SQLsave.setString(1, userName);
-				SQLsave.setString(2, passWord);
+				
 				SQLsave.executeUpdate();
                 System.out.println("Your information has been saved to our database, you can now login and enjoy the game.");
+                Main.invoke();
             }
-			else
+			else {
 				System.out.println("Username already exists, please try again");
+				Main.invoke();
+			}
 		    scanner.close();
 		} catch (SQLException e) {
             e.printStackTrace();

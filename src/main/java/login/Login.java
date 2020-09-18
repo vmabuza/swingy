@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import swingy.ClearScreen;
+import swingy.Main;
 import swingy.Menu;
 import dbConnection.ConnString;
 
@@ -23,9 +24,6 @@ public class Login {
 			ClearScreen.clearScreen();
 			System.out.print("LOGIN PAGE\n\nEnter your Username: ");
 			String userName = scanner.nextLine();
-			
-			System.out.print("Enter your password: ");
-			String passWord = scanner.nextLine();
 						
 			PreparedStatement SQL = con.prepareStatement(query);
 			SQL.setString(1, "%" + userName + "%");
@@ -37,8 +35,8 @@ public class Login {
 				Menu.menu_page(tag);
             }
 			else {
-				System.out.println("Incorrect username and password combination, please try again");
-				login();
+				System.out.println("Invalid username, please try again");
+				Main.invoke();
 			}
 		    scanner.close();
 		} catch (SQLException e) {
