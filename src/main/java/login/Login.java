@@ -16,10 +16,9 @@ public class Login {
 	public static void login() {
 
     	String query = "SELECT username FROM swingy.dbo.users WHERE  username LIKE ?";
+    	Scanner scanner = new Scanner(System.in);
 		
     	try (Connection con = DriverManager.getConnection(ConnString.conn());) {
-			// Read user input from command line
-			Scanner scanner = new Scanner(System.in);
 			
 			ClearScreen.clearScreen();
 			System.out.print("LOGIN PAGE\n\nEnter your Username: ");
@@ -33,14 +32,11 @@ public class Login {
 			if (rs.next()) {
 				String tag = userName;
 				Menu.menu_page(tag);
-            }
-			else {
+            } else {
 				System.out.println("Invalid username, please try again");
 				Main.invoke();
-			}
-		    scanner.close();
-		} catch (SQLException e) {
-            e.printStackTrace();
-            }
-    }
-}
+				}
+			} catch (SQLException e) { e.printStackTrace(); }
+    	finally {scanner.close();}
+    	}
+	}

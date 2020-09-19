@@ -17,8 +17,7 @@ public class Main {
 		GameState.createGameState();
 		ClearScreen.clearScreen();
 		String welcome_msg = "Welcome to Swingy\n\nPlease sign up or login bellow.\n1. Login\n2. Sign up\n\n";;
-		
-		//Read input
+
 		Scanner reader = new Scanner(System.in);
 		
 		String input;
@@ -29,16 +28,13 @@ public class Main {
 			
 			if (!input.isEmpty() && convert == 1) {
 				Login.login();
-			}
-			else if (!input.isEmpty() && convert == 2) {
+			} else if (!input.isEmpty() && convert == 2) {
 				SignUp.Register();
-			}
-			else {
+			} else {
 				System.out.println("Invalid input, please start the game and try again");
 				System.exit(0);
 				}
-			} catch (NumberFormatException nfe) {
-					System.out.println("InvalidNumberFormatException: " + nfe.getMessage());
-					} finally {reader.close(); }
-	}
+			} catch (NumberFormatException nfe) {System.out.println("InvalidNumberFormatException: " + nfe.getMessage());} 
+		finally {reader.close(); }
+		}
 	}

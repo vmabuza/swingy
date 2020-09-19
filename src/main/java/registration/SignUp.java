@@ -18,7 +18,6 @@ public class SignUp {
     	String query = "SELECT username FROM swingy.dbo.users WHERE  username LIKE ?";
 		
     	try (Connection con = DriverManager.getConnection(ConnString.conn());) {
-			// Read user input from command line
 			Scanner scanner = new Scanner(System.in);
 			
 			ClearScreen.clearScreen();
@@ -39,14 +38,11 @@ public class SignUp {
 				SQLsave.executeUpdate();
                 System.out.println("Your information has been saved to our database, you can now login and enjoy the game.");
                 Main.invoke();
-            }
-			else {
+            } else {
 				System.out.println("Username already exists, please try again");
 				Main.invoke();
 			}
 		    scanner.close();
-		} catch (SQLException e) {
-            e.printStackTrace();
-            }
+		} catch (SQLException e) { e.printStackTrace();}
     }
 }

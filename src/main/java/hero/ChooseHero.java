@@ -15,6 +15,7 @@ public class ChooseHero {
 		String query = "SELECT heroName FROM swingy.dbo.heroes WHERE  owner LIKE ?";
 		String query2 = "SELECT * FROM swingy.dbo.heroes WHERE  owner LIKE ? AND heroName LIKE ?";
 		int i = 1;
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		
 		try (Connection con = DriverManager.getConnection(ConnString.conn());) {
@@ -56,14 +57,11 @@ public class ChooseHero {
             		Start.startGame(tag, selectedHero);
             	else
             		chooseHero(tag);
-            	}
-            else {
+            	} else {
             	System.out.println("You have chosen a non existing hero " + input + "Please try again");
             	chooseHero(tag);
             }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                }
+            } catch (SQLException e) { e.printStackTrace();}
 		} 
 	}
 	

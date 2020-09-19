@@ -37,6 +37,7 @@ public class CreateHero {
 				System.out.println("Error, invalid selection");
 				createHero(tag);
 			}
+			
 			System.out.println("Please choose start up attack level: \n1. 1\n2. 2\n3. 3");
 			String heroAttack = scanner.nextLine();
 			int convertAttack = Integer.parseInt(heroAttack.trim());
@@ -65,13 +66,13 @@ public class CreateHero {
 				
 				System.out.println("Your hero has been successfuly created...");
 				Menu.menu_page(tag);
-			}
-			else
+			} else if (cNewHero == 2) {
 				Menu.menu_page(tag);
-		}  catch (NumberFormatException nfe) {
-			System.out.println("InvalidNumberFormatException: " + nfe.getMessage());
-			}catch (SQLException e) {
-	            e.printStackTrace();
-	            }finally {scanner.close();}
+			} else {
+				System.out.println("Invalid input, please try again.");
+				Menu.menu_page(tag);
+			}
+		} catch (SQLException e) { e.printStackTrace();} 
+		finally {scanner.close();}
+		}
 	}
-}

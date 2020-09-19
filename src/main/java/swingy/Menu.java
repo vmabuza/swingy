@@ -17,14 +17,10 @@ public class Menu {
     		
     		if (!option.isEmpty() && convert == 1) {
     			ChooseHero.chooseHero(tag);
-    		}
-    		else if (!option.isEmpty() && convert == 2) {
+    		} else if (!option.isEmpty() && convert == 2) {
     			CreateHero.createHero(tag);
     		}
-    	}catch (NumberFormatException nfe) {
-    		System.out.println("InvalidNumberFormatException: " + nfe.getMessage());
-    		} finally {scanner.close(); }
-		 
-
-    }
-}
+    	} catch (NumberFormatException nfe) {System.out.println("InvalidNumberFormatException: " + nfe.getMessage());} 
+    	finally {scanner.close(); }
+    	}
+	}
