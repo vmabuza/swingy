@@ -1,15 +1,16 @@
-package registration;
+package controllers;
 
 import java.util.Scanner;
+
+import models.ConnString;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dbConnection.ConnString;
-import swingy.ClearScreen;
-import swingy.Main;
+import views.ClearScreen;
 
 public class SignUp {
     

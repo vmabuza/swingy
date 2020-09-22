@@ -1,9 +1,6 @@
-package swingy;
+package views;
 
 import java.util.Scanner;
-
-import hero.ChooseHero;
-import hero.CreateHero;
 
 public class Menu {
 	public static void menu_page(String tag) {

@@ -1,4 +1,4 @@
-package swingy;
+package views;
 
 public class ClearScreen {
 	public static void clearScreen() {  

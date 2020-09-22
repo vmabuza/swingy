@@ -1,4 +1,4 @@
-package hero;
+package views;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,9 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import dbConnection.ConnString;
-import swingy.ClearScreen;
-import swingy.Menu;
+import models.ConnString;
 
 public class CreateHero {
 	public static void createHero(String tag) {
@@ -38,30 +36,20 @@ public class CreateHero {
 				createHero(tag);
 			}
 			
-			System.out.println("Please choose start up attack level: \n1. 1\n2. 2\n3. 3");
-			String heroAttack = scanner.nextLine();
-			int convertAttack = Integer.parseInt(heroAttack.trim());
-			
-			System.out.println("Please choose start up defense level: \n1. 1\n2. 2\n3. 3");
-			String heroDefense = scanner.nextLine();
-			int convertDefense = Integer.parseInt(heroDefense.trim());
-			
 			ClearScreen.clearScreen();
 			System.out.println("You have chosen the following attributes for your new hero");
-			System.out.println("Hero name: " + heroName + "\nHero class: " + reConvertClass + "\nHero attack: " + heroAttack + "\nHero defense: " + heroDefense);
+			System.out.println("Hero name: " + heroName + "\nHero class: " + reConvertClass );
 			System.out.println("\n1. Confirm\n2. Cancel");
 			String confirmNewHero = scanner.nextLine();
 			int cNewHero = Integer.parseInt(confirmNewHero.trim());
 			
 			if (cNewHero == 1) {
-				String insert = "INSERT INTO swingy.dbo.heroes (heroName, heroClass, heroAttack, heroDefense, owner) VALUES (?, ?, ?, ?, ?)";
+				String insert = "INSERT INTO swingy.dbo.heroes (heroName, heroClass, owner) VALUES (?, ?, ?)";
 				PreparedStatement SQLsave = con.prepareStatement(insert);
 		
 				SQLsave.setString(1, heroName);
 				SQLsave.setString(2, reConvertClass);
-				SQLsave.setLong(3, convertAttack);
-				SQLsave.setLong(4, convertDefense);
-				SQLsave.setString(5, tag);
+				SQLsave.setString(3, tag);
 				SQLsave.executeUpdate();
 				
 				System.out.println("Your hero has been successfuly created...");

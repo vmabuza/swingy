@@ -1,4 +1,4 @@
-package dbConnection;
+package models;
 
 public class ConnString {
 	public static String conn() {

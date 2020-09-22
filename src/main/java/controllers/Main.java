@@ -1,11 +1,11 @@
-package swingy;
+package controllers;
+
 
 import java.util.Scanner;
 
-import dbConnection.CreateVillain;
-import dbConnection.GameState;
-import registration.SignUp;
-import login.Login;
+import models.CreateVillain;
+import models.GameState;
+import views.ClearScreen;
 
 public class Main {
 	public static void main(String[] args) {
