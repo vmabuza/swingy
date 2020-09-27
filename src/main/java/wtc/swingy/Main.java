@@ -22,9 +22,10 @@ public class Main {
 		if (args.length == 1 && args[0].equals("console")) {
 			gameMode = false;
 			Game.iterateMain ();
-		} else (args.length == 1 && args[0].equals("gui")) {
+		} else if (args.length == 1 && args[0].equals("gui")) {
 			gameMode = true;
 			Game.iterateMain();
-		}
+		} else
+			printUsage();
 	}
 }
