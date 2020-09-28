@@ -1,6 +1,7 @@
 package wtc.swingy;
 
 import wtc.swingy.database.ConnString;
+import wtc.swingy.database.GameDB;
 
 public class Main {
 
@@ -18,6 +19,7 @@ public class Main {
 
 	public static void		main(String[] args) {
 		ConnString.createDB();
+		GameDB.createHeroesTable();;
 	
 		if (args.length == 1 && args[0].equals("console")) {
 			gameMode = false;
@@ -27,5 +29,6 @@ public class Main {
 			Game.iterateMain();
 		} else
 			printUsage();
+
 	}
 }
