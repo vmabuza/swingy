@@ -3,8 +3,13 @@ package wtc.swingy;
 import wtc.swingy.database.ConnString;
 import wtc.swingy.database.GameDB;
 
-public class Main {
+import javax.validation.Configuration;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
 
+public class Main {
+	public static Configuration<?> config = Validation.byDefaultProvider().configure();
+	public static ValidatorFactory factory = config.buildValidatorFactory();
 
 	public static volatile boolean gameMode;
 
@@ -29,6 +34,6 @@ public class Main {
 			Game.iterateMain();
 		} else
 			printUsage();
-
+		factory.close();
 	}
 }

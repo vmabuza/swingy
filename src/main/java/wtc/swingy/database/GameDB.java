@@ -1,11 +1,14 @@
 package wtc.swingy.database;
 
 import wtc.swingy.Main;
-import wtc.swingy.model.Creature;
+import wtc.swingy.model.Hero;
 import wtc.swingy.model.PlayerClasses;
+import wtc.swingy.model.armor.*;
+import wtc.swingy.model.helmets.*;
 import wtc.swingy.model.races.Naruto;
 import wtc.swingy.model.races.DBZ;
 import wtc.swingy.model.races.God_Eater;
+import wtc.swingy.model.weapons.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -55,7 +58,7 @@ public class GameDB {
 	}
 	
 	//Unique
-	private static boolean isUniquePlayer(Creature player) {
+	private static boolean isUniquePlayer(Hero player) {
 	try (Connection con = DriverManager.getConnection(ConnString.conn());) {
 	
 	PreparedStatement SQLsave = con.prepareStatement(GetPlayers);
@@ -68,8 +71,9 @@ public class GameDB {
 	return true;
 	}
 	
-	public static void insertHero(Creature player) {
+	public static void insertHero(Hero player) {
 		try (Connection con = DriverManager.getConnection(ConnString.conn());) {
+			// connection = connectToDB();
 			if (!isUniquePlayer(player))
 				Main.printError("Player already exist.");
 			else {
@@ -103,20 +107,20 @@ public class GameDB {
 			}
 		}
 	
-	public static ArrayList<Creature> getDB() {
+	public static ArrayList<Hero> getDB() {
 		try (Connection con = DriverManager.getConnection(ConnString.conn());) {
-			ArrayList<Creature> players = new ArrayList<>();
+			ArrayList<Hero> players = new ArrayList<>();
 	
 			PreparedStatement SQL = con.prepareStatement(GetPlayers);
 			ResultSet resultSet = SQL.executeQuery();
 	
 			while (resultSet.next()) {
-				Creature player = new Creature();
+				Hero player = new Hero();
 				switch (resultSet.getString("race").toLowerCase()) {
 				case "god_eater":
 					player.setPlayerRaceDefault(new God_Eater());
 					break;
-				case "dbz":   
+				case "dbz":
 					player.setPlayerRaceDefault(new DBZ());
 					break;
 				case "naruto":
@@ -134,6 +138,63 @@ public class GameDB {
 					player.setPlayerClass(PlayerClasses.WATER);
 					break;
 				}
+				player.setName(resultSet.getString("name"));
+				player.setLevel(resultSet.getInt("level"));
+				player.setHealthPoints(resultSet.getInt("hp"));
+				player.setMaxHealthPoints(resultSet.getInt("max_hp"));
+				player.setExpPoints(resultSet.getInt("xp"));
+				player.setAttack(resultSet.getInt("attack"));
+				switch (resultSet.getString("weapon").toLowerCase()) {
+				case "-":
+					player.setWeapon(new Fists());
+					break;
+				case "fists":
+					player.setWeapon(new Fists());
+					break;
+				case "knife":
+					player.setWeapon(new BronzeKnife());
+					break;
+				case "sword":
+					player.setWeapon(new WoodSword());
+					break;
+				default:
+					player.setWeapon(new Fists());
+					break;
+				}
+				switch (resultSet.getString("armor").toLowerCase()) {
+				case "-":
+					player.setArmor(null);
+					break;
+				case "wood shield":
+					player.setArmor(new WoodShell());
+					break;
+				case "bronze shield":
+					player.setArmor(new BronzeShell());
+					break;
+				case "steel shield":
+					player.setArmor(new SteelShell());
+					break;
+				default:
+					player.setArmor(null);
+					break;
+				}
+				switch (resultSet.getString("helmet").toLowerCase()) {
+				case "-":
+					player.setHelmetDefault(null);
+					break;
+				case "wood helmet":
+					player.setHelmetDefault(new WoodHelmet());
+					break;
+				case "bronze helmet":
+					player.setHelmetDefault(new BronzeHelmet());
+					break;
+				case "steel helmet":
+					player.setHelmetDefault(new SteelHelmet());
+					break;
+				default:
+					player.setHelmetDefault(null);
+					break;
+				}
 				players.add(player);
 			}
 			for (int i = players.size(); i < 4; ++i)
@@ -143,7 +204,7 @@ public class GameDB {
 	return null;
 	}
 	
-	public static void updateHero(Creature player) {
+	public static void updateHero(Hero player) {
 	try (Connection con = DriverManager.getConnection(ConnString.conn());) {
 	
 	PreparedStatement preparedStatement = con.prepareStatement(Update_Player);
