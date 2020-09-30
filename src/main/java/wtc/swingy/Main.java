@@ -14,7 +14,7 @@ public class Main {
 	public static volatile boolean gameMode;
 
 	private static void		printUsage() {
-		System.out.println("Usage: java -jar swingy.jar [console OR gui ]");
+		System.out.println("Usage: java -jar swingy.jar [console || gui || delete]");
 	}
 
 	public static void		printError(String message) {
@@ -24,14 +24,14 @@ public class Main {
 
 	public static void		main(String[] args) {
 		ConnString.createDB();
-		GameDB.createHeroesTable();;
-	
+		GameDB.createHeroesTable();
+
 		if (args.length == 1 && args[0].equals("console")) {
 			gameMode = false;
-			Game.iterateMain ();
+			Game.mainLoop();
 		} else if (args.length == 1 && args[0].equals("gui")) {
 			gameMode = true;
-			Game.iterateMain();
+			Game.mainLoop();
 		} else
 			printUsage();
 		factory.close();
