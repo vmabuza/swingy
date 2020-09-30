@@ -117,6 +117,7 @@ public class GameDB {
 
 			while (resultSet.next()) {
 				TypeOfCharacter player = new TypeOfCharacter();
+
 				switch (resultSet.getString("race").toLowerCase()) {
 					case "eater":
 						player.setPlayerRaceDefault(new Eater());
