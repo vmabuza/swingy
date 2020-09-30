@@ -28,10 +28,10 @@ public class Main {
 	
 		if (args.length == 1 && args[0].equals("console")) {
 			gameMode = false;
-			Game.iterateMain ();
+			Game.mainLoop ();
 		} else if (args.length == 1 && args[0].equals("gui")) {
 			gameMode = true;
-			Game.iterateMain();
+			Game.mainLoop();
 		} else
 			printUsage();
 		factory.close();
