@@ -99,5 +99,11 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>8.4.1.jre11</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations-java5</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>
