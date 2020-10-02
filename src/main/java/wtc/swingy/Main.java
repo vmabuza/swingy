@@ -28,11 +28,7 @@ public class Main {
 
 		if (args.length == 1 && args[0].equals("console")) {
 			gameMode = false;
-<<<<<<< HEAD
 			Game.mainLoop ();
-=======
-			Game.mainLoop();
->>>>>>> d9408efc04126396674fa7b94df46514a96c2c51
 		} else if (args.length == 1 && args[0].equals("gui")) {
 			gameMode = true;
 			Game.mainLoop();
