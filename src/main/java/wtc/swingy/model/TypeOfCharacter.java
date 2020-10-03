@@ -8,11 +8,13 @@ import wtc.swingy.model.races.AbstractRace;
 import wtc.swingy.model.weapons.AbstractWeapon;
 import wtc.swingy.model.weapons.Fists;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Random;
 
 public class TypeOfCharacter {
+	@NotBlank(message = "Name can not be blank")
 	@NotEmpty(message = "Name can not be empty.")
 	@Size(min=3, max=15, message = "Name size must be between 3 to 15 characters long.")
 	private String			name;
