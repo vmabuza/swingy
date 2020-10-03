@@ -1,5 +1,6 @@
 package wtc.swingy;
 
+import wtc.swingy.controller.Loops;
 import wtc.swingy.database.ConnString;
 import wtc.swingy.database.GameDB;
 
@@ -28,10 +29,10 @@ public class Main {
 
 		if (args.length == 1 && args[0].equals("console")) {
 			gameMode = false;
-			Game.mainLoop ();
+			Loops.mainLoop ();
 		} else if (args.length == 1 && args[0].equals("gui")) {
 			gameMode = true;
-			Game.mainLoop();
+			Loops.mainLoop();
 		} else
 			printUsage();
 		factory.close();
