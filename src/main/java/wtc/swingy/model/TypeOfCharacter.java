@@ -18,8 +18,8 @@ public class TypeOfCharacter {
 	@NotEmpty(message = "Name can not be empty.")
 	@Size(min=3, max=15, message = "Name size must be between 3 to 15 characters long.")
 	private String			name;
-	private HeroClasses playerClass;
-	private AbstractRace playerRace;
+	private HeroClasses 	playerClass;
+	private AbstractRace 	playerRace;
 	private	int				healthPoints;
 	private	int				maxHealthPoints;
 	private int				expPoints;
@@ -29,12 +29,12 @@ public class TypeOfCharacter {
 	private int				lastPosY;
 	private int				level;
 	private int				attack;
-	private AbstractHelmet helmet;
-	private AbstractArmor armor;
-	private AbstractWeapon weapon;
+	private AbstractHelmet 	helmet;
+	private AbstractArmor 	armor;
+	private AbstractWeapon 	weapon;
 
 	public TypeOfCharacter() {
-		name = null;
+		name  = null;
 		healthPoints = 100;
 		maxHealthPoints = 100;
 		expPoints = 0;

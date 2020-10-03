@@ -1,8 +1,6 @@
 package wtc.swingy.controller;
 
 import wtc.swingy.Main;
-import wtc.swingy.controller.battle.BattleHandler;
-import wtc.swingy.controller.Controller;
 import wtc.swingy.database.GameDB;
 import wtc.swingy.view.gui.FrontUI;
 import wtc.swingy.model.map.Map;
@@ -45,7 +43,7 @@ public class Loops {
 				view.getShellGui().drawMap();
 			if (Controller.playerMovement(hero, map)) {
 				if (map.getMapCell(hero.getPosY(), hero.getPosX()) == 'E')
-					if (!BattleHandler.startBattle(hero, map))
+					if (!BattleHandler.startFight(hero, map))
 						return false;
 					else
 						map.setMapCell(hero.getPosY(), hero.getPosX(), '.');
