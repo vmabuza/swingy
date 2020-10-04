@@ -18,11 +18,6 @@ public class Main {
 		System.out.println("Usage: java -jar swingy.jar [console || gui || delete]");
 	}
 
-	public static void		printError(String message) {
-		System.err.println(message);
-		System.exit(2);
-	}
-
 	public static void		main(String[] args) {
 		ConnString.createDB();
 		GameDB.createHeroesTable();

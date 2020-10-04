@@ -76,7 +76,7 @@ public class GameDB {
 		try (Connection con = DriverManager.getConnection(ConnString.conn());) {
 			// connection = connectToDB();
 			if (!isUniquePlayer(player))
-				Main.printError("Player already exist.");
+				System.out.println("Player already exist.");
 			else {
 				PreparedStatement preparedStatement = con.prepareStatement(InsertPlayer);
 				preparedStatement.setString(1, player.getName());
@@ -104,7 +104,7 @@ public class GameDB {
 				preparedStatement.executeUpdate();
 			}
 		} catch (SQLException e) {
-			Main.printError(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -203,7 +203,7 @@ public class GameDB {
 				players.add(null);
 			return players;
 		} catch (SQLException e) {
-			Main.printError(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		return null;
 	}
@@ -232,7 +232,7 @@ public class GameDB {
 			preparedStatement.setString(9, player.getName());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			Main.printError(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 }
